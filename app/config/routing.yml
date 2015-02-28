@@ -1,0 +1,4 @@
+wypozyczalnia_test:
+    resource: "@WypozyczalniaTestBundle/Resources/config/routing.yml"
+    prefix:   /
+

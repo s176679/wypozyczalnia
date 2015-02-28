@@ -1,0 +1,4 @@
+services:
+#    wypozyczalnia_test.example:
+#        class: Wypozyczalnia\TestBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

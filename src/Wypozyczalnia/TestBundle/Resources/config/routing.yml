@@ -1,0 +1,3 @@
+wypozyczalnia_test_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: WypozyczalniaTestBundle:Default:index }
