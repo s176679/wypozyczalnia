@@ -1,3 +1,8 @@
+wypozyczalnia_test_annotations:
+    resource: "@WypozyczalniaTestBundle/Controller"
+    type: annotation
+
 wypozyczalnia_test_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: WypozyczalniaTestBundle:Default:index }
+    pattern: /wypozyczalnia
+    defaults:
+        _controller: WypozyczalniaTestBundle:Wypozyczalnia:index
