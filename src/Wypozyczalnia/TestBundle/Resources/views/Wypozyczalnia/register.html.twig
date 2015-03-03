@@ -150,8 +150,14 @@
             </div>
         </form> #}   
             
-            
-            {{form(form)}}
+            {% if form is not null %}
+            {{form(form, {'attr': {'novalidate': 'true'}})}}
+            {% else %}
+                <div class="panel  panel-success">
+                    <div class="panel-heading">Już się zarejestrowałeś</div>
+                    <div class="panel-body">Możesz się zalogować.</div>
+                </div>    
+            {% endif %}    
         </div>
            {# {% endautoescape %}#}
 

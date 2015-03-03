@@ -1,6 +1,6 @@
-<?php
-
+<?php // 
 namespace Wypozyczalnia\TestBundle\Entity;
+use Symfony\Component\Form\FormView;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="test")
+ * @ORM\Table(name="users")
  */
 class Register {
     
@@ -21,91 +21,58 @@ class Register {
     private $id;
     
 
-//    /**
-//     * @ORM\Column(type="string", length=255)
-//     * 
-//     * @Assert\NotBlank
-//     * 
-//     * @Assert\Regex(
-//     *      pattern = "/^[a-zA-Z]+ [a-zA-Z]+$/",
-//     *      message = "Musisz podać imię i nazwisko"
-//     * )
-//     * 
-//     * @Assert\Length(
-//     *      max = 255
-//     * )
-//     */
+    /**
+     * @ORM\Column(type="string", length=255)
+     * 
+     * @Assert\NotBlank
+     * 
+     * @Assert\Regex(
+     *      pattern = "/^[a-zA-Z]+$/",
+     *      message = "Musisz podać login"
+     * )
+     * 
+     * @Assert\Length(
+     *      max = 255
+     * )
+     */
     private $name;
     
     
-//    /**
-//     * @ORM\Column(type="string", length=255)
-//     * 
-//     * @Assert\NotBlank
-//     * 
-//     * @Assert\Email
-//     */
+    /**
+     * @ORM\Column(type="string", length=255)
+     * 
+     * @Assert\NotBlank
+     * 
+     * @Assert\Email
+     */
     private $email;
     
     
-//    /**
-//     * @ORM\Column(type="string", length=1, nullable=true)
-//     */
-    private $sex;
     
-    
-//    /**
-//     * @ORM\Column(type="date", nullable=true)
-//     * 
-//     * @Assert\Date
-//     */
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     * 
+     * @Assert\Date
+     */
     private $birthdate;
     
     
-//    /**
-//     * @ORM\Column(type="string", length=2)
-//     * 
-//     * @Assert\NotBlank
-//     */
+    /**
+     * @ORM\Column(type="string", length=2)
+     * 
+     * @Assert\NotBlank
+     */
     private $country;
     
     
-//    /**
-//     * @ORM\Column(type="string", length=255)
-//     * 
-//     * @Assert\NotBlank
-//     */
-    private $course;
+    /**
+     * @ORM\Column(type="string", length=10)
+     * 
+     * @Assert\NotBlank
+     */
+    private $password;
     
-    
-//    /**
-//     * @ORM\Column(type="array")
-//     * 
-//     * @Assert\NotBlank
-//     * 
-//     * @Assert\Count(
-//     *      min = 2
-//     * )
-//     */
-    private $invest;
-    
-    
-//    /**
-//     * @ORM\Column(type="text", nullable=true)
-//     */
-    private $comments;
-    
-    
-//    /**
-//     * @Assert\NotBlank
-//     * 
-//     * @Assert\File(
-//     *      maxSize = "1M",
-//     *      mimeTypes = {"application/pdf", "application/x-pdf"},
-//     *      mimeTypesMessage = "Potwierdzenie przelewu musi być w formacie PDF"
-//     * )
-//     */
-    private $paymentFile;
+  
     
     
     public function getPaymentFile() {
@@ -119,7 +86,7 @@ class Register {
 
     public function save($savePath){
         
-        $paramsNames = array('name', 'email', 'sex', 'birthdate', 'country', 'course', 'invest', 'comments');
+        $paramsNames = array('name', 'email', 'birthdate', 'country');
         $formData = array();
         foreach ($paramsNames as $name){
             $formData[$name] = $this->{$name};
@@ -136,6 +103,7 @@ class Register {
             $file->move($savePath, $newName);
         }
     }
+
 
     /**
      * Get id
@@ -194,29 +162,6 @@ class Register {
     }
 
     /**
-     * Set sex
-     *
-     * @param string $sex
-     * @return Register
-     */
-    public function setSex($sex)
-    {
-        $this->sex = $sex;
-
-        return $this;
-    }
-
-    /**
-     * Get sex
-     *
-     * @return string 
-     */
-    public function getSex()
-    {
-        return $this->sex;
-    }
-
-    /**
      * Set birthdate
      *
      * @param \DateTime $birthdate
@@ -263,71 +208,25 @@ class Register {
     }
 
     /**
-     * Set course
+     * Set password
      *
-     * @param string $course
+     * @param string $password
      * @return Register
      */
-    public function setCourse($course)
+    public function setPassword($password)
     {
-        $this->course = $course;
+        $this->password = $password;
 
         return $this;
     }
 
     /**
-     * Get course
+     * Get password
      *
      * @return string 
      */
-    public function getCourse()
+    public function getPassword()
     {
-        return $this->course;
-    }
-
-    /**
-     * Set invest
-     *
-     * @param array $invest
-     * @return Register
-     */
-    public function setInvest($invest)
-    {
-        $this->invest = $invest;
-
-        return $this;
-    }
-
-    /**
-     * Get invest
-     *
-     * @return array 
-     */
-    public function getInvest()
-    {
-        return $this->invest;
-    }
-
-    /**
-     * Set comments
-     *
-     * @param string $comments
-     * @return Register
-     */
-    public function setComments($comments)
-    {
-        $this->comments = $comments;
-
-        return $this;
-    }
-
-    /**
-     * Get comments
-     *
-     * @return string 
-     */
-    public function getComments()
-    {
-        return $this->comments;
+        return $this->password;
     }
 }

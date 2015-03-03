@@ -8,8 +8,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Wypozyczalnia\TestBundle\Helper\Journal\Journal;
 use Wypozyczalnia\TestBundle\Helper\DataProvider;
-//use Wypozyczalnia\TestBundle\Form\Type\RegisterType;
-//use Wypozyczalnia\TestBundle\Entity\Register;
+use Wypozyczalnia\TestBundle\Entity\Register;
+use Wypozyczalnia\TestBundle\Form\Type\RegisterType;
 
 /**
  * @Route("/wypozyczalnia")
@@ -87,42 +87,57 @@ class WypozyczalniaController extends Controller {
     */
     public function registerAction(Request $Request){
         
-       $form = $this->createFormBuilder()
-                ->add('name', 'text',array(
-                    'label'=>'Imię i nazwisko'
-                ))
-                ->add('email', 'email',array(
-                    'label'=>'Adres E-Mail'
-                ))
-                ->add('plec', 'choice', array(
-                    'label'=> 'Płeć',
-                    'choices' => array(
-                        'M' => 'Mężczyzna',
-                        'F' => 'Kobieta'
-                    ),
-                    'expanded' => true 
-                ))
-                ->add('birthday', 'birthday', array(
-                    'label'=>'Data urodzenia',
-                    'empty_value' => '--',
-                    'empty_data' => NULL
-                ))
-                ->add('country', 'country',array(
-                    'empty_value' => "Poland"
-                ))
-                ->add('save','submit')
-                ->getForm();
+
+      $Register = new Register();
+
+        $Session = $this->get('session');
         
-       
-       $form->handleRequest($Request);
-       
-       if($form->isValid()){
-           $formData = $form->getData();
-       }
-       
+        if(!$Session->has('registered')){
+        
+            $form = $this->createForm(new RegisterType(), $Register);
+
+            $form->handleRequest($Request);
+
+            if($Request->isMethod('POST')){
+                if($form->isValid()){
+
+                    
+                    $em = $this->getDoctrine()->getManager();
+                    $em->persist($Register);
+                    $em->flush();
+
+                    $msgBody = $this->renderView('WypozyczalniaTestBundle:Email:base.html.twig', array(
+                        'name' => $Register->getName()
+                    ));
+
+                    $message = \Swift_Message::newInstance()
+                                        ->setSubject('Potwierdzenie rejestracji')
+                                        ->setFrom(array('d.pawlikpkr@gmail.com' => 'Wypozyczalia'))
+                                        ->setTo(array($Register->getEmail() => $Register->getName()))
+                                        ->setBody($msgBody, 'text/html');
+
+                    $this->get('mailer')->send($message);
+
+                    $Session->getFlashBag()->add('success', 'Twoje zgłoszenie zostało zapisane!');
+                   // $this->get('edu_notification')->addSuccess('Twoje zgłoszenie zostało zapisane!');
+                    //$Session->set('registered', true);
+
+                  //  return $this->redirect($this->generateUrl('wypozyczalnia_rejestracja'));
+                }else{
+                    $Session->getFlashBag()->add('danger', 'Popraw błędy formularza.');
+                   // $this->get('edu_notification')->addError('Popraw błędy formularza.');
+                }
+            }
+        }
+        
+        
         return array(
-            'form' => $form->createView()
-        );        
+            'form' => isset($form) ? $form->createView() : NULL,
+        );
+    
     }
+    
+    
+    
     
    }
