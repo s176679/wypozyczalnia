@@ -7,6 +7,7 @@ class Journal {
     static function getHistoryAsArray(){
         return array(
             array(
+                // 'id' => automatycznie z bazy autoincrement
                 'company_name' => 'Ziarno Prawdy',
                 'start_date' => new \DateTime('2012-03-03 00:00:00'),
                 'purchase_price' => 20.53,

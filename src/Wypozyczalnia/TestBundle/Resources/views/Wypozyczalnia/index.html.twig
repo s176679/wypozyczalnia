@@ -8,7 +8,7 @@
   
         <h3>Lista Wszystkich filmow</h3>
         <h4>Wszystkich filmów: {{ history|length }}</h4>
-                          {#  <pre>{{ dump(history) }}</pre>#}
+                         
         <table class="table table-bordered table-striped table-hover">
             <thead>
                 <tr>
@@ -21,15 +21,15 @@
             <tbody>
                 {% for row in history %}
 
-                    <td>{{ row.companyName|upper }}</td>
-                    <td>{{ row.startDate|date('d.m.Y') }}</td>
-                    <td>{{ row.purchasePrice|number_format(2, ',', ' ') }} zł‚</td>
-                    <td>{{ row.quantity|number_format(0, ',', ' ') }}</td>                    
-                </tr>
-                {% else %}
-                <tr>
-                    <td colspan="7">Brak wpisów </td>
-                </tr>
+                        <td>{{ row.companyName|upper }}</td>
+                        <td>{{ row.startDate|date('Y') }}</td>
+                        <td>{{ row.purchasePrice|number_format(2, ',', ' ') }} zł‚</td>
+                        <td>{{ row.quantity|number_format(0, ',', ' ') }}</td>                    
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="7">Brak wpisów</td>
+                    </tr>
                 
                 {% endfor %}
                 

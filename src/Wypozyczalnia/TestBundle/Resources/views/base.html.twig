@@ -120,12 +120,6 @@
                         {% for item in mainMenu %}
                         <li{{ app.request.get('_route') == item['path'] ? ' class="active"' : '' }}><a href="{{ path(item['path']) }}">{{ item['name'] }}</a></li>
                         {% endfor %}
-                        {#
-                        <li class="active"><a href="glowna.html">Home</a></li>
-                        <li><a href="dziennik.html">Dziennik</a></li>
-                        <li><a href="o-mnie.html">O mnie</a></li>
-                        <li><a href="kontakt.html">Kontakt</a></li>
-                        #}
                     </ul>
                 </div><!--/.navbar-collapse -->
 
