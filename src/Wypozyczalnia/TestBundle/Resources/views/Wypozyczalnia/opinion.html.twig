@@ -1,1 +1,26 @@
-recenzje
+{% extends "WypozyczalniaTestBundle::base.html.twig"%}
+{%block stylesheets %}
+    {{ parent() }}
+        <link href="{{ asset('bundles/wypozyczalniatest/css/sidebar.css') }}" rel="stylesheet">
+{%endblock%}
+
+{% block pageTitle %}
+    recenzje | {{ parent() }}
+{% endblock %}
+
+{% block contentContainer %}
+        <div class="opinion-book">
+        <h3>LISTA RECENZJI</h3>
+           {# {% autoescape false %}#}
+
+            {%for entry in comments%}
+            <section>    
+                <h4>{{ entry['title']|raw }}</h4>
+                <h5>{{ entry['name']|raw }}</h5>                
+                <p>{{ entry['comment'] }}</p>
+            </section>
+            {%endfor%}
+            </div>
+           {# {% endautoescape %}#}
+
+{% endblock %}

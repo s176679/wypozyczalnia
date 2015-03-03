@@ -1,6 +1,6 @@
 <?php
 
-namespace Eduweb\TrainingBundle\Helper;
+namespace Wypozyczalnia\TestBundle\Helper;
 
 class DataProvider {
     
@@ -30,18 +30,26 @@ class DataProvider {
     }
     
     
-    public static function getGuestBook(){
+    public static function getOpinion(){
         return array(
             array(
                 'name' => '<strong>Wojtek</strong> Hossa',
+                'title' => '<strong>Psy</strong>', 
                 'comment' => 'Lorem ipsum dolor sit amet enim. Etiam ullamcorper. Suspendisse a pellentesque dui, non felis. Maecenas malesuada elit lectus felis, malesuada ultricies. Curabitur et ligula. Ut molestie a, ultricies porta urna. Vestibulum commodo volutpat a, convallis ac, laoreet enim.'
             ),
             array(
                 'name' => '<strong>Marek</strong> Bessa',
+                'title' => '<strong>Zairno Prawdy</strong>',
                 'comment' => 'Nulla imperdiet sit amet magna. Vestibulum dapibus, mauris nec malesuada fames ac turpis velit, rhoncus eu, <strong>luctus et interdum adipiscing wisi</strong>. Aliquam erat ac ipsum. Integer aliquam purus. Quisque lorem tortor fringilla sed, vestibulum id'
             ),
             array(
                 'name' => '<strong>Irek</strong> Złośliwiec',
+                'title' => '<strong>Psy</strong>',
+                'comment' => 'Quisque lorem tortor fringilla sed, vestibulum id, eleifend justo vel bibendum sapien massa <script>alert("Strona zainfekowana!");</script> ac <style>body{background-color:red!important;}</style></p></section></div></article></div></body></html>turpis faucibus orci luctus non, consectetuer lobortis quis, varius in, purus. Integer ultrices posuere cubilia Curae, Nulla ipsum dolor lacus, suscipit adipiscing. Cum sociis natoque penatibus et ultrices volutpat. Nullam wisi ultricies a, gravida vitae, dapibus risus ante sodales lectus blandit'
+            ),
+            array(
+                'name' => '<strong>Dawid</strong> Pawlik',
+                'title' => '<strong>test</strong>',
                 'comment' => 'Quisque lorem tortor fringilla sed, vestibulum id, eleifend justo vel bibendum sapien massa <script>alert("Strona zainfekowana!");</script> ac <style>body{background-color:red!important;}</style></p></section></div></article></div></body></html>turpis faucibus orci luctus non, consectetuer lobortis quis, varius in, purus. Integer ultrices posuere cubilia Curae, Nulla ipsum dolor lacus, suscipit adipiscing. Cum sociis natoque penatibus et ultrices volutpat. Nullam wisi ultricies a, gravida vitae, dapibus risus ante sodales lectus blandit'
             ),
         );
