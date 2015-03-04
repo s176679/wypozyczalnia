@@ -130,7 +130,10 @@
     {{ block('button_widget') }}
 {%- endblock submit_widget -%}
 
+ {% if form is not null %}
 {% form_theme form _self %}
+{% endif %} 
+
 
 {% block pageTitle %}
     Rejestracja | {{ parent() }}
@@ -149,7 +152,13 @@
                 </div>
             </div>
         </form> #}   
-            
+        <div class="container alerts">
+            {% for type,messages in app.session.flashbag.all() %}
+                {% for msg in messages %}
+                <div class="alert alert-{{ type }}">{{ msg }}</div>
+                {% endfor %}
+            {% endfor %}
+        </div>
             {% if form is not null %}
             {{form(form, {'attr': {'novalidate': 'true'}})}}
             {% else %}

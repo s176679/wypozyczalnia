@@ -22,14 +22,6 @@ class RegisterType extends AbstractType {
                 ->add('email', 'email', array(
                     'label' => 'Email'
                 ))
-//                ->add('sex', 'choice', array(
-//                    'label' => 'Płeć',
-//                    'choices' => array(
-//                        'm' => 'Mężczyzna',
-//                        'f' => 'Kobieta'
-//                    ),
-//                    'expanded' => true
-//                ))
                 ->add('birthdate', 'birthday', array(
                     'label' => 'Data urodzenia',
                     'empty_value' => '--',
@@ -50,7 +42,7 @@ class RegisterType extends AbstractType {
     
     public function setDefaultOptions(\Symfony\Component\OptionsResolver\OptionsResolverInterface $resolver) {
         $resolver->setDefaults(array(
-         //   'data_class' => 'Wypozyczalnia\TestBundle\Entity\Register'
+            'data_class' => 'Wypozyczalnia\TestBundle\Entity\Register'
         ));
     }
 

@@ -90,6 +90,7 @@ class WypozyczalniaController extends Controller {
 
       $Register = new Register();
 
+
         $Session = $this->get('session');
         
         if(!$Session->has('registered')){
@@ -118,11 +119,11 @@ class WypozyczalniaController extends Controller {
 
                     $this->get('mailer')->send($message);
 
-                    $Session->getFlashBag()->add('success', 'Twoje zgłoszenie zostało zapisane!');
+                    $Session->getFlashBag()->add('success', 'Twoje konto zostało stworzone, możesz się zalgować');
                    // $this->get('edu_notification')->addSuccess('Twoje zgłoszenie zostało zapisane!');
-                    //$Session->set('registered', true);
+                    $Session->set('registered', true);
 
-                  //  return $this->redirect($this->generateUrl('wypozyczalnia_rejestracja'));
+                    return $this->redirect($this->generateUrl('wypozyczalnia_rejestracja'));
                 }else{
                     $Session->getFlashBag()->add('danger', 'Popraw błędy formularza.');
                    // $this->get('edu_notification')->addError('Popraw błędy formularza.');
