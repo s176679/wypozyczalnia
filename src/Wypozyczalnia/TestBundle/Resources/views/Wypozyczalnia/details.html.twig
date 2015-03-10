@@ -28,6 +28,7 @@
                         <td>{{ register.quantity }}</td>
                         <td>
                             <a class="btn btn-sm btn-info" {#href="{{ path('wypozyczalnia_film_buy', {id: register.id}) }}"#}>Wypożycz</a>
+                            <a class="btn btn-sm btn-info" href="{{ path('wypozyczalnia_komentarz', {id: register.title}) }}">Dodaj recenzję</a>
                             
                         </td>
                     </tr>
