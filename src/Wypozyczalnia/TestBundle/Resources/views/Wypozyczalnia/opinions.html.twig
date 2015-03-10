@@ -143,9 +143,9 @@
         <div class="opinion-book">
             <h3>Dodaj komentarz dla filmu {{ id }} </h3>
             
-            {{ form(form)}}
             
-        {#<form class="form-horizontal" action="" method="post" {{ form_enctype(form)}}>
+            
+        <form class="form-horizontal" action="" method="post" {{ form_enctype(form)}}>
             <div class="form-group">
                 {{ form_label(form.name, null, {'label_attr' : {'class': 'col-sm-3 control-label'}}) }}
                 <div class="col-sm-9">
@@ -153,7 +153,23 @@
                     {{ form_errors(form.name) }}
                 </div>
             </div>
-        </form> #}   
+        </form>
+                
+        <form class="form-horizontal" action="" method="post" {{ form_enctype(form)}}>
+            <div class="form-group">
+                {{ form_label(form.opinion, null, {'label_attr' : {'class': 'col-sm-3 control-label'}}) }}
+                <div class="col-sm-9">
+                    {{ form_widget(form.opinion, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.opinion) }}
+                </div>
+            </div>
+        </form>
+        
+
+
+                
+        {{ form(form)}}
+        
         <div class="container alerts">
             {% for type,messages in app.session.flashbag.all() %}
                 {% for msg in messages %}
