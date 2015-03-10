@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Wypozyczalnia\TestBundle\Helper\Journal\Journal;
 use Wypozyczalnia\TestBundle\Helper\DataProvider;
 use Wypozyczalnia\TestBundle\Entity\Register;
+use Wypozyczalnia\TestBundle\Entity\Opinions;
 use Wypozyczalnia\TestBundle\Entity\Films;
 use Wypozyczalnia\TestBundle\Form\Type\RegisterType;
 
@@ -40,6 +41,44 @@ class WypozyczalniaController extends Controller {
         $rows = $Repozytorium->findAll();
         return array(
             'rows' => $rows
+        );
+    }
+    
+    /**
+    * @Route(
+     *      "/komentarz/{id}",
+     *      name="wypozyczalnia_komentarz"
+     * )
+    *
+    * @Template  
+    */
+    public function opinionsAction($id, Request $Request){
+        
+        $form = $this->createFormBuilder()
+                ->add('opinion', 'textarea')
+                ->add('name', 'text')
+                ->add('zatwierdz', 'submit')
+                ->getForm();
+        
+        $Session = $this->get('session');
+        
+        $Opinions = new Opinions();               
+        
+        if($Request->isMethod('POST')) {
+            
+            $form->handleRequest($Request);
+            $formData = $form->get('opinion')->getData();
+            $formData2 = $form->get('name')->getData();
+            $Opinions->setName($formData)
+                ->setOpinion($formData2);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($Opinions);
+            $em->flush();
+        }
+        
+        return array(
+            'id' => $id,
+            'form' => $form->createView()
         );
     }
 
