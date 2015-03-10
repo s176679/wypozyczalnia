@@ -1,7 +1,7 @@
 <?php // 
 namespace Wypozyczalnia\TestBundle\Entity;
 use Symfony\Component\Form\FormView;
-
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -73,6 +73,14 @@ class Register {
     private $password;
     
   
+    /**
+     * @ORM\OneToMany(targetEntity="Opinions", mappedBy="Users")
+     */
+    protected $Opinion;
+    
+    public function __construct() {
+        $this->Opinion = new ArrayCollection();
+    }
     
     
     public function getPaymentFile() {
@@ -228,5 +236,38 @@ class Register {
     public function getPassword()
     {
         return $this->password;
+    }
+
+    /**
+     * Add Opinion
+     *
+     * @param \Wypozyczalnia\TestBundle\Entity\Opinions $opinion
+     * @return Register
+     */
+    public function addOpinion(\Wypozyczalnia\TestBundle\Entity\Opinions $opinion)
+    {
+        $this->Opinion[] = $opinion;
+
+        return $this;
+    }
+
+    /**
+     * Remove Opinion
+     *
+     * @param \Wypozyczalnia\TestBundle\Entity\Opinions $opinion
+     */
+    public function removeOpinion(\Wypozyczalnia\TestBundle\Entity\Opinions $opinion)
+    {
+        $this->Opinion->removeElement($opinion);
+    }
+
+    /**
+     * Get Opinion
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getOpinion()
+    {
+        return $this->Opinion;
     }
 }

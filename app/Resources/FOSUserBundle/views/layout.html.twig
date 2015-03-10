@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>VOD</title>
+	<link rel="stylesheet" href="{{ asset('bundles/WypozyczalniaTestBundle/css/bootstrap.min.css') }}" type="text/css" />
+	<link rel="stylesheet" href="{{ asset('bundles/WypozyczalniaTestBundle/css/app.css') }}" type="text/css" />
+</head>
+<body>
+	{% include 'WypozyczalniaTestBundle:_partials:navbar.html.twig' %}
+
+	<div class="container" id="security">
+		<div class="row">
+			<div class="col-md-12">
+				{% block content %}
+					{% block fos_user_content %}{% endblock %}
+				{% endblock %}
+			</div>
+		</div>
+	</div>
+</body>
+</html>

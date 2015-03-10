@@ -3,6 +3,8 @@ wypozyczalnia_test_annotations:
     type: annotation
 
 wypozyczalnia_test_homepage:
-    pattern: /wypozyczalnia
+    pattern: /
     defaults:
         _controller: WypozyczalniaTestBundle:Wypozyczalnia:index
+           
+        

@@ -7,19 +7,21 @@
     <div class="opinion-book">
   
         <h3>Lista Wszystkich filmow</h3>
-        <h4>Wszystkich filmów: {{ history|length }}</h4>
+        <h4>Wszystkich filmów: {{ rows|length }}</h4>
                          
         <table class="table table-bordered table-striped table-hover">
             <thead>
                 <tr>
+
                     <th>Tytuł</th>
                     <th>Rok powstania</th>
                     <th>Cena</th>
                     <th>ilość pobrań</th>
+                    <th>Akcje</th>                    
                 </tr>
             </thead>
             <tbody>
-                {% for row in history %}
+                {#{% for row in history %}
 
                         <td>{{ row.companyName|upper }}</td>
                         <td>{{ row.startDate|date('Y') }}</td>
@@ -31,8 +33,23 @@
                         <td colspan="7">Brak wpisów</td>
                     </tr>
                 
+                {% endfor %}#}
+                {% for entry in rows %}
+                    <tr>
+                        <td>{{ entry.title }}</td>
+                        <td>{{ entry.production_year }}</td>
+                        <td>{{ entry.price }}</td>
+                        <td>{{ entry.quantity }}</td>
+                        <td>
+                            <a class="btn btn-sm btn-info" href="{{ path('wypozyczalnia_film_details', {id: entry.id}) }}">Zobacz więcej</a>
+                            
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr>    
+                        <td colspan="5">Brak Filmów</td>
+                    </tr>
                 {% endfor %}
-                
 
             </tbody>
         </table>

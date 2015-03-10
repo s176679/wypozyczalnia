@@ -1,4 +1,5 @@
 services:
-#    wypozyczalnia_test.example:
-#        class: Wypozyczalnia\TestBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]
+    wypozyczalania.registration.form.type:
+        class: Wypozyczalnia\TestBundle\Form\Type\RegistrationFormType
+        tags:
+            - { name: form.type, alias: wypozyczalnia_user_registration }

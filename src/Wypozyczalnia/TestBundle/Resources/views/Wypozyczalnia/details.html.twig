@@ -1,0 +1,40 @@
+{% extends "WypozyczalniaTestBundle::base.html.twig"%}
+
+{% block pageTitle %}
+   Film Szczegóły | {{ parent() }}
+{% endblock %}
+{% block contentContainer %}
+    <div class="opinion-book">
+  
+        <h3>Szczegóły</h3>
+                         
+        <table class="table table-bordered table-striped table-hover">
+            <thead>
+                <tr>
+
+                    <th>Tytuł</th>
+                    <th>Rok powstania</th>
+                    <th>Cena</th>
+                    <th>ilość pobrań</th>
+                    <th>Akcje</th>                    
+                </tr>
+            </thead>
+            <tbody>
+
+                    <tr>
+                        <td>{{ register.title }}</td>
+                        <td>{{ register.production_year }}</td>
+                        <td>{{ register.price }}</td>
+                        <td>{{ register.quantity }}</td>
+                        <td>
+                            <a class="btn btn-sm btn-info" {#href="{{ path('wypozyczalnia_film_buy', {id: register.id}) }}"#}>Wypożycz</a>
+                            
+                        </td>
+                    </tr>
+
+
+            </tbody>
+        </table>
+
+    </div>
+{% endblock %}
